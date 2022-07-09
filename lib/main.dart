@@ -1,3 +1,4 @@
+import 'package:firebase_flutter/screens/email_password/bloC/profileCubit/profile_cubit.dart';
 import 'package:firebase_flutter/screens/email_password/bloC/signUpBloC/signup_bloc.dart';
 import 'package:firebase_flutter/screens/email_password/login_home.dart';
 import 'package:firebase_flutter/screens/email_password/login_screen.dart';
@@ -29,6 +30,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<LoginBloc>(
           create: (BuildContext context) => LoginBloc(),
+        ),
+        BlocProvider<ProfileCubit>(
+          create: (BuildContext context) => ProfileCubit(),
         ),
       ],
       child: MaterialApp(
