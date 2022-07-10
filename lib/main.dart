@@ -12,6 +12,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'screens/email_password/bloC/loginBloC/login_bloc.dart';
 import 'screens/email_password/bloC/signUpBloC/signup_bloc.dart';
+import 'screens/google_sign_in/cubiT/google_cubit.dart';
+import 'screens/google_sign_in/sign_in_google_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,6 +39,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<ProfileCubit>(
           create: (BuildContext context) => ProfileCubit(),
         ),
+        BlocProvider<GoogleSignInCubit>(
+          create: (BuildContext context) => GoogleSignInCubit(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -51,6 +56,7 @@ class MyApp extends StatelessWidget {
           SingUpScreen.id: (context) => SingUpScreen(),
           LoginHome.id: (context) => LoginHome(),
           NotificationScreen.id: (context) => NotificationScreen(),
+          SignInGoogleScreen.id: (context) => SignInGoogleScreen(),
         },
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:firebase_flutter/screens/google_sign_in/sign_in_google_screen.dart';
 import 'package:firebase_flutter/screens/notification/notification_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -33,8 +34,8 @@ class ModuleList extends StatelessWidget {
             ),
             Card(
               child: ListTile(
-                // onTap: () =>
-                // Navigator.pushNamed(context, NotificationScreen.id),
+                onTap: () =>
+                    Navigator.pushNamed(context, SignInGoogleScreen.id),
                 leading: Icon(Icons.mail_outline),
                 title: Text('Sign In with Google'),
               ),
