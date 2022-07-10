@@ -7,6 +7,9 @@ import 'package:firebase_flutter/screens/module_list.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_flutter/screens/notification/notification_screen.dart';
 import 'package:firebase_flutter/screens/notification/services/notification_service.dart';
+import 'package:firebase_flutter/screens/phone_auth/cubiT/phone_auth_cubit.dart';
+import 'package:firebase_flutter/screens/phone_auth/mobile_screen.dart';
+import 'package:firebase_flutter/screens/phone_auth/otp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -42,6 +45,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<GoogleSignInCubit>(
           create: (BuildContext context) => GoogleSignInCubit(),
         ),
+        BlocProvider<PhoneAuthCubit>(
+          create: (BuildContext context) => PhoneAuthCubit(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -57,6 +63,8 @@ class MyApp extends StatelessWidget {
           LoginHome.id: (context) => LoginHome(),
           NotificationScreen.id: (context) => NotificationScreen(),
           SignInGoogleScreen.id: (context) => SignInGoogleScreen(),
+          PhoneAuthScreen.id: (context) => PhoneAuthScreen(),
+          PhoneAuthOtpScreen.id: (context) => PhoneAuthOtpScreen(),
         },
       ),
     );

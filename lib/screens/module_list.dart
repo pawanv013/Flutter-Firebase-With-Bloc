@@ -1,5 +1,6 @@
 import 'package:firebase_flutter/screens/google_sign_in/sign_in_google_screen.dart';
 import 'package:firebase_flutter/screens/notification/notification_screen.dart';
+import 'package:firebase_flutter/screens/phone_auth/mobile_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'email_password/login_screen.dart';
@@ -22,6 +23,13 @@ class ModuleList extends StatelessWidget {
                 onTap: () => Navigator.pushNamed(context, LoginScreen.id),
                 leading: Icon(Icons.mail),
                 title: Text('Email Password Authentication'),
+              ),
+            ),
+            Card(
+              child: ListTile(
+                onTap: () => Navigator.pushNamed(context, PhoneAuthScreen.id),
+                leading: Icon(Icons.phone_android),
+                title: Text('Firebase Phone Auth'),
               ),
             ),
             Card(
