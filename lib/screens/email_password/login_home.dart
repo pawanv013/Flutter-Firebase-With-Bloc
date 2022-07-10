@@ -3,21 +3,14 @@ import 'package:firebase_flutter/screens/email_password/bloC/profileCubit/profil
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LoginHome extends StatefulWidget {
+class LoginHome extends StatelessWidget {
   const LoginHome({Key? key}) : super(key: key);
   static const String id = 'login_home';
-
-  @override
-  State<LoginHome> createState() => _LoginHomeState();
-}
-
-final _formKey = GlobalKey<FormState>();
-TextEditingController _fullName = TextEditingController();
-TextEditingController _age = TextEditingController();
-
-class _LoginHomeState extends State<LoginHome> {
   @override
   Widget build(BuildContext context) {
+    final _formKey = GlobalKey<FormState>();
+    TextEditingController _fullName = TextEditingController();
+    TextEditingController _age = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         title: Text('Login with Email-Passwords'),

@@ -1,3 +1,4 @@
+import 'package:firebase_flutter/screens/notification/notification_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'email_password/login_screen.dart';
@@ -24,10 +25,20 @@ class ModuleList extends StatelessWidget {
             ),
             Card(
               child: ListTile(
-                leading: Icon(Icons.mail),
-                title: Text('Email Password Authentication'),
+                onTap: () =>
+                    Navigator.pushNamed(context, NotificationScreen.id),
+                leading: Icon(Icons.notifications),
+                title: Text('Firebase Notification'),
               ),
-            )
+            ),
+            Card(
+              child: ListTile(
+                // onTap: () =>
+                // Navigator.pushNamed(context, NotificationScreen.id),
+                leading: Icon(Icons.mail_outline),
+                title: Text('Sign In with Google'),
+              ),
+            ),
           ],
         ),
       )),
