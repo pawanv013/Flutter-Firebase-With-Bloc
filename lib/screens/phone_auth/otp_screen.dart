@@ -46,7 +46,7 @@ class PhoneAuthOtpScreen extends StatelessWidget {
                           content: Text(state.phoneAuthErrorMessage),
                         ),
                       );
-                    } else if (state is PhoneAuthCodeVerifiedState) {
+                    } else if (state is PhoneAuthLoggedInState) {
                       Navigator.popUntil(context, (route) => route.isFirst);
                       Navigator.pushNamed(context, LoginHome.id);
                     }

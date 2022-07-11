@@ -17,3 +17,5 @@ class ProfileSaveErrorState extends ProfileState {
   late String saveErrorMessage;
   ProfileSaveErrorState(this.saveErrorMessage);
 }
+
+class ProfileLoggedOutState extends ProfileState {}

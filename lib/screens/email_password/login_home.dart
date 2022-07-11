@@ -1,5 +1,6 @@
 import 'package:firebase_flutter/screens/email_password/bloC/profileCubit/profile_cubit.dart';
 import 'package:firebase_flutter/screens/email_password/bloC/profileCubit/profile_state.dart';
+import 'package:firebase_flutter/screens/module_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -79,51 +80,87 @@ class LoginHome extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10.0, vertical: 5),
-                    child: BlocConsumer<ProfileCubit, ProfileState>(
-                      listener: (context, state) {
-                        if (state is ProfileSavelState) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              backgroundColor: Colors.green,
-                              content: Text(state.saveSuccessMessage),
-                            ),
-                          );
-                        } else if (state is ProfileSaveErrorState) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              backgroundColor: Colors.red,
-                              content: Text(state.saveErrorMessage),
-                            ),
-                          );
-                        }
-                      },
-                      builder: (context, state) {
-                        if (state is ProfileLoadingState) {
-                          return Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }
-                        return SizedBox(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                BlocProvider.of<ProfileCubit>(context)
-                                    .submitProfileDetail(
-                                        _fullName.text, _age.text);
-                              }
-                            },
-                            child: Text(
-                              'Save',
-                              style: TextStyle(fontSize: 20),
-                            ),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
+                  child: BlocConsumer<ProfileCubit, ProfileState>(
+                    listener: (context, state) {
+                      if (state is ProfileSavelState) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: Colors.green,
+                            content: Text(state.saveSuccessMessage),
                           ),
                         );
-                      },
-                    )),
+                      } else if (state is ProfileSaveErrorState) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: Colors.red,
+                            content: Text(state.saveErrorMessage),
+                          ),
+                        );
+                      }
+                    },
+                    builder: (context, state) {
+                      if (state is ProfileLoadingState) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      return SizedBox(
+                        height: 50,
+                        width: MediaQuery.of(context).size.width,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              BlocProvider.of<ProfileCubit>(context)
+                                  .submitProfileDetail(
+                                      _fullName.text, _age.text);
+                            }
+                          },
+                          child: Text(
+                            'Save',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                  child: BlocConsumer<ProfileCubit, ProfileState>(
+                    listener: (context, state) {
+                      if (state is ProfileLoggedOutState) {
+                        Navigator.popUntil(context, (route) => route.isFirst);
+                        Navigator.pushReplacementNamed(context, ModuleList.id);
+                      }
+                    },
+                    builder: (context, state) {
+                      if (state is ProfileLoadingState) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      return Row(
+                        children: [
+                          Expanded(
+                            child: SizedBox(
+                              height: 50,
+                              child: ElevatedButton(
+                                child: Text('Logout'),
+                                onPressed: () {
+                                  BlocProvider.of<ProfileCubit>(context)
+                                      .signOut();
+                                },
+                              ),
+                            ),
+                          )
+                        ],
+                      );
+                    },
+                  ),
+                ),
               ],
             ),
           ),
